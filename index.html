@@ -1,209 +1,1008 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Arun Sekhar | Hardware & Embedded Systems</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* CSS: This section styles the page */
+
         :root {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
+            --bg: #F7F7EF;
+            --surface: #FFFFFF;
+            --surface-light: #EEF2E9;
+            --text: #26352C;
+            --muted: #718074;
+            --accent: #789B78;
+            --accent2: #A3B99A;
+            --border: rgba(52, 82, 57, 0.13);
+            --forest: #234735;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            line-height: 1.6;
+            background: var(--bg);
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
         }
 
-        /* Container to keep content centered and readable */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 20px;
+            width: min(1100px, 88%);
+            margin: auto;
         }
 
-        /* Header Section */
-        header {
-            padding: 100px 0 50px 0;
-            border-bottom: 1px solid #334155;
+        /* BACKGROUND EFFECTS */
+
+        body::before {
+            content: "";
+            position: fixed;
+            width: 500px;
+            height: 500px;
+            top: -200px;
+            right: -150px;
+            background: rgba(163, 185, 154, 0.22);
+            filter: blur(120px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
+        body::after {
+            content: "";
+            position: fixed;
+            width: 450px;
+            height: 450px;
+            bottom: -200px;
+            left: -150px;
+            background: rgba(120, 155, 120, 0.13);
+            filter: blur(120px);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: -1;
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: var(--text-muted);
-            margin-bottom: 20px;
+        /* NAVIGATION */
+
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(247, 247, 239, 0.90);
+            backdrop-filter: blur(18px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .nav-content {
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--forest);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            color: var(--muted);
+            font-size: 0.9rem;
+        }
+
+        .nav-links a {
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--forest);
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            min-height: 620px;
+            display: flex;
+            align-items: center;
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-content {
+            max-width: 850px;
+        }
+
+        .availability {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 8px 15px;
+            border: 1px solid rgba(120, 155, 120, 0.3);
+            border-radius: 30px;
+            color: #426B4B;
+            font-size: 0.85rem;
+            margin-bottom: 30px;
+            background: #EAF1E7;
+        }
+
+        .availability::before {
+            content: "";
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #67966A;
+            box-shadow: 0 0 10px rgba(103, 150, 106, 0.5);
+        }
+
+        .hero h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2.8rem, 7vw, 5.2rem);
+            line-height: 1.12;
+            letter-spacing: -3px;
+            margin-bottom: 25px;
+            color: #263F30;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #527B59, #9AB58B);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-description {
+            max-width: 680px;
+            font-size: 1.1rem;
+            color: var(--muted);
+            margin-bottom: 35px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #527B59;
+            color: #FFFFFF;
+        }
+
+        .btn-primary:hover {
+            background: #365E40;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            border: 1px solid rgba(52, 82, 57, 0.25);
+            color: #365E40;
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            background: #EEF2E9;
+        }
+
+        /* GENERAL SECTIONS */
+
+        section {
+            padding: 100px 0;
+            border-bottom: 1px solid var(--border);
+            scroll-margin-top: 75px;
+        }
+
+        .section-label {
+            color: #628467;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            letter-spacing: -1px;
+            margin-bottom: 18px;
+            color: #263F30;
+        }
+
+        .section-description {
+            color: var(--muted);
+            max-width: 650px;
+            margin-bottom: 45px;
+        }
+
+        /* ABOUT */
+
+        .about-content {
+            max-width: 850px;
+            color: var(--muted);
+            font-size: 1.05rem;
+        }
+
+        .about-content strong {
+            color: var(--text);
+        }
+
+        /* PROJECTS */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 22px;
+        }
+
+        .project-card {
+            position: relative;
+            padding: 30px;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(42, 69, 47, 0.035);
+            transition: 0.35s ease;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #789B78, #B4CBA8);
+            opacity: 0;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            border-color: rgba(120, 155, 120, 0.45);
+            box-shadow: 0 15px 35px rgba(42, 69, 47, 0.08);
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
+        }
+
+        .project-number {
+            color: #789B78;
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 0.85rem;
+            margin-bottom: 22px;
+        }
+
+        .project-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: #294B34;
+        }
+
+        .project-card p {
+            color: var(--muted);
+            font-size: 0.94rem;
+            margin-bottom: 22px;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tech-stack span {
+            font-size: 0.75rem;
+            padding: 5px 10px;
+            border-radius: 5px;
+            color: #426B4B;
+            background: #EDF3E9;
+            border: 1px solid #E0E9DC;
+        }
+
+        .featured {
+            border-color: rgba(120, 155, 120, 0.45);
+            background: linear-gradient(145deg, #FFFFFF, #F1F5ED);
+        }
+
+        .featured-label {
+            display: inline-block;
+            font-size: 0.7rem;
+            letter-spacing: 1px;
+            color: #426B4B;
+            background: #E4EEDF;
+            padding: 5px 10px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+        }
+
+        /* EXPERIENCE */
+
+        .experience-card {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            padding: 30px;
+            max-width: 800px;
+            box-shadow: 0 5px 20px rgba(42, 69, 47, 0.035);
+        }
+
+        .experience-card h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            color: #294B34;
+        }
+
+        .experience-card .company {
+            color: #628467;
+            margin: 7px 0 15px;
+        }
+
+        .experience-card p {
+            color: var(--muted);
+        }
+
+        /* SKILLS */
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .skill-tag {
+            padding: 11px 18px;
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: #426B4B;
+            font-size: 0.9rem;
+            transition: 0.3s;
+        }
+
+        .skill-tag:hover {
+            border-color: #789B78;
+            background: #EEF2E9;
+            transform: translateY(-3px);
+        }
+
+        /* CONTACT */
+
+        .contact-box {
+            padding: 50px;
+            background: linear-gradient(135deg, #E7EFE2, #F1F4E9);
+            border: 1px solid rgba(120, 155, 120, 0.25);
+            border-radius: 18px;
+        }
+
+        .contact-box h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: #294B34;
+        }
+
+        .contact-box p {
+            color: var(--muted);
+            margin-bottom: 25px;
+        }
+
+        .contact-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
         }
 
         .contact-links a {
-            color: var(--accent);
-            text-decoration: none;
-            margin-right: 15px;
-            font-weight: bold;
+            color: #527B59;
+            font-weight: 600;
+            font-size: 0.9rem;
         }
 
         .contact-links a:hover {
             text-decoration: underline;
         }
 
-        /* Section Global Styles */
-        section {
-            padding: 50px 0;
-            border-bottom: 1px solid #334155;
-        }
-
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: var(--accent);
-        }
-
-        /* Projects Grid */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .project-card {
-            background-color: var(--card-bg);
-            padding: 25px;
-            border-radius: 8px;
-            transition: transform 0.2s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .project-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-        }
-
-        .tech-stack {
-            font-family: monospace;
-            color: var(--accent);
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-            display: block;
-        }
-
-        /* Skills Tags */
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .skill-tag {
-            background-color: var(--card-bg);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            border: 1px solid #334155;
-        }
+        /* FOOTER */
 
         footer {
-            text-align: center;
             padding: 30px 0;
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: var(--muted);
+            font-size: 0.85rem;
+            text-align: center;
         }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 700px) {
+
+            .nav-links {
+                gap: 13px;
+                font-size: 0.75rem;
+            }
+
+            .logo {
+                font-size: 1.1rem;
+            }
+
+            .hero {
+                min-height: 550px;
+                padding: 75px 0;
+            }
+
+            .hero h1 {
+                letter-spacing: -1.5px;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 75px 0;
+            }
+
+            .contact-box {
+                padding: 30px 22px;
+            }
+        }
+
+        @media (max-width: 430px) {
+
+            .nav-content {
+                height: auto;
+                padding: 15px 0;
+                align-items: flex-start;
+                gap: 12px;
+                flex-direction: column;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+
+        /* SCROLL ANIMATION */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+
+            *, *::before, *::after {
+                scroll-behavior: auto !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .reveal {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
     </style>
 </head>
+
 <body>
 
-    <div class="container">
-        <!-- HEADER -->
-        <header>
-            <h1>Arun Sekhar</h1>
-            <p class="subtitle">Electronics & Communication Engineering Student | Embedded Systems | Hardware Validation</p>
-            <div class="contact-links">
-                <a href="mailto:arun134469@gmail.com">Email Me</a>
-                <a href="https://linkedin.com/in/arun-sekhar-0548bb2a4" target="_blank">LinkedIn</a>
-                <a href="https://github.com" target="_blank">GitHub</a>
-                <a href="Resume.pdf" target="_blank">Download Resume</a>
+    <!-- NAVIGATION -->
+
+    <nav>
+        <div class="container nav-content">
+
+            <a href="#" class="logo">ARUN<span>.</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+
+        </div>
+    </nav>
+
+
+    <main>
+
+        <!-- HERO SECTION -->
+
+        <header class="hero">
+            <div class="container hero-content">
+
+                <div class="availability">
+                    Electronics & Communication Engineering
+                </div>
+
+                <h1>
+                    Building at the intersection of
+                    <span>Hardware & Software.</span>
+                </h1>
+
+                <p class="hero-description">
+                    I'm Arun Sekhar, an engineering student passionate
+                    about embedded systems, hardware engineering and
+                    software development. I enjoy exploring technology
+                    and turning ideas into practical solutions.
+                </p>
+
+                <div class="hero-buttons">
+
+                    <a href="#projects" class="btn btn-primary">
+                        Explore My Projects →
+                    </a>
+
+                    <a href="#contact" class="btn btn-outline">
+                        Get In Touch
+                    </a>
+
+                </div>
+
             </div>
         </header>
 
-        <!-- ABOUT -->
+
+        <!-- ABOUT SECTION -->
+
         <section id="about">
-            <h2>About Me</h2>
-            <p>Motivated Electronics and Communication Engineering student with hands-on experience in computer hardware servicing, embedded systems, software-hardware integration, and Arduino-based development. Seeking full-time opportunities in embedded systems, semiconductor, cybersecurity, hardware validation, or software engineering.</p>
+
+            <div class="container reveal">
+
+                <div class="section-label">01 / About Me</div>
+
+                <h2 class="section-title">
+                    A little about myself.
+                </h2>
+
+                <div class="about-content">
+
+                    <p>
+                        I'm an Electronics and Communication Engineering
+                        student interested in the intersection of
+                        electronics, computing and software engineering.
+
+                        With hands-on experience in computer hardware
+                        servicing, embedded systems and software-hardware
+                        integration, I enjoy understanding how technology
+                        works from the hardware level to the application
+                        level.
+                    </p>
+
+                    <br>
+
+                    <p>
+                        From experimenting with microcontrollers to
+                        developing full-stack applications, I constantly
+                        look for opportunities to learn, experiment and
+                        build something meaningful.
+                    </p>
+
+                </div>
+
+            </div>
+
         </section>
 
-        <!-- PROJECTS -->
+
+        <!-- PROJECTS SECTION -->
+
         <section id="projects">
-            <h2>Featured Projects</h2>
-            <div class="projects-grid">
-                
-                <!-- Project 1 -->
-                <div class="project-card">
-                    <h3 class="project-title">Smart Door Lock System</h3>
-                    <span class="tech-stack">Arduino | Bluetooth (HC-05) | Biometrics | Servos</span>
-                    <p>Designed a smart door locking mechanism utilizing an Arduino microcontroller and a servo motor. Integrated Bluetooth for wireless mobile app control, alongside fingerprint and PIN verification for multi-factor authentication.</p>
-                </div>
 
-                <!-- Project 2 -->
-                <div class="project-card">
-                    <h3 class="project-title">Retro FM Android App</h3>
-                    <span class="tech-stack">C++ (JNI) | Kotlin | Ghidra | Linux Drivers</span>
-                    <p>Developing an Android FM radio application for MediaTek-based devices. Reverse-engineered proprietary .so libraries using Ghidra to map device node interfaces and interface with Android HAL via native C++.</p>
-                </div>
+            <div class="container reveal">
 
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <h3 class="project-title">Arduino Home Automation</h3>
-                    <span class="tech-stack">Embedded C | Relay Modules | Sensors</span>
-                    <p>Designed and verified an automation prototype managing appliances through microcontroller integration, connecting physical relay architectures and environmental sensors.</p>
-                </div>
+                <div class="section-label">02 / Selected Work</div>
 
-                <!-- Project 4 -->
-                <div class="project-card">
-                    <h3 class="project-title">Custom PC Builds & Optimization</h3>
-                    <span class="tech-stack">Hardware Diagnostics | BIOS | System Config</span>
-                    <p>Repaired, assembled, and upgraded 15+ desktop computers. Configured BIOS, diagnosed hardware anomalies, and refurbished systems to improve lifecycle and high-performance computing limits.</p>
+                <h2 class="section-title">
+                    Things I've been building.
+                </h2>
+
+                <p class="section-description">
+                    A collection of projects that reflect my interests
+                    in embedded systems, software development and
+                    practical engineering.
+                </p>
+
+                <div class="projects-grid">
+
+
+                    <!-- PROJECT 1: HEALTHCOST AI -->
+
+                    <div class="project-card featured">
+
+                        <div class="project-number">
+                            01 / WEB APPLICATION
+                        </div>
+
+                        <div class="featured-label">
+                            FEATURED PROJECT
+                        </div>
+
+                        <h3 class="project-title">
+                            HealthCost AI
+                        </h3>
+
+                        <p>
+                            Developing an AI-powered healthcare cost
+                            analysis platform that helps patients
+                            understand medical bills. The application
+                            supports bill uploads, line-item extraction,
+                            calculation validation and easy-to-understand
+                            explanations of medical charges.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>React</span>
+                            <span>Vite</span>
+                            <span>Node.js</span>
+                            <span>Express</span>
+                            <span>MongoDB</span>
+                            <span>OpenAI API</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJECT 2: SMART DOOR LOCK -->
+
+                    <div class="project-card">
+
+                        <div class="project-number">
+                            02 / EMBEDDED SYSTEMS
+                        </div>
+
+                        <h3 class="project-title">
+                            Smart Door Lock System
+                        </h3>
+
+                        <p>
+                            Designed a smart door locking mechanism using
+                            an Arduino microcontroller and servo motor.
+                            Integrated Bluetooth-based mobile control
+                            with PIN and biometric verification for
+                            multi-factor authentication.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>Arduino</span>
+                            <span>HC-05</span>
+                            <span>Embedded C</span>
+                            <span>Servo Motors</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJECT 3: RETRO FM -->
+
+                    <div class="project-card">
+
+                        <div class="project-number">
+                            03 / ANDROID DEVELOPMENT
+                        </div>
+
+                        <h3 class="project-title">
+                            Retro FM Android App
+                        </h3>
+
+                        <p>
+                            Exploring the development of an offline FM
+                            radio application for MediaTek-based Android
+                            devices. Investigating native libraries,
+                            device interfaces and Android hardware
+                            abstraction layers.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>C++</span>
+                            <span>JNI</span>
+                            <span>Kotlin</span>
+                            <span>Ghidra</span>
+                            <span>Android NDK</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJECT 4: HOME AUTOMATION -->
+
+                    <div class="project-card">
+
+                        <div class="project-number">
+                            04 / IOT & AUTOMATION
+                        </div>
+
+                        <h3 class="project-title">
+                            Arduino Home Automation
+                        </h3>
+
+                        <p>
+                            Designed an automation prototype for
+                            controlling electrical appliances through
+                            microcontroller integration, relay modules
+                            and environmental sensors.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>Arduino</span>
+                            <span>Embedded C</span>
+                            <span>Relays</span>
+                            <span>Sensors</span>
+                        </div>
+
+                    </div>
+
+
+                    <!-- PROJECT 5: PC BUILDS -->
+
+                    <div class="project-card">
+
+                        <div class="project-number">
+                            05 / HARDWARE ENGINEERING
+                        </div>
+
+                        <h3 class="project-title">
+                            Custom PC Builds & Optimization
+                        </h3>
+
+                        <p>
+                            Repaired, assembled and upgraded 15+
+                            desktop computers. Performed hardware
+                            diagnostics, BIOS configuration,
+                            component replacement and system
+                            optimization.
+                        </p>
+
+                        <div class="tech-stack">
+                            <span>PC Assembly</span>
+                            <span>BIOS</span>
+                            <span>Diagnostics</span>
+                            <span>Hardware Testing</span>
+                        </div>
+
+                    </div>
+
+
                 </div>
 
             </div>
+
         </section>
 
-        <!-- SKILLS -->
+
+        <!-- EXPERIENCE SECTION -->
+
+        <section id="experience">
+
+            <div class="container reveal">
+
+                <div class="section-label">03 / Experience</div>
+
+                <h2 class="section-title">
+                    Where I've learned.
+                </h2>
+
+                <div class="experience-card">
+
+                    <h3>
+                        Embedded Systems Design Intern
+                    </h3>
+
+                    <div class="company">
+                        Shristi Innovative
+                    </div>
+
+                    <p>
+                        Completed a one-month internship focused on
+                        Embedded Systems Design, gaining practical
+                        exposure to embedded engineering concepts
+                        and development workflows.
+                    </p>
+
+                    <br>
+
+                    <span class="tech-stack">
+                        Embedded Systems | Hardware | Microcontrollers
+                    </span>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- SKILLS SECTION -->
+
         <section id="skills">
-            <h2>Technical Skills</h2>
-            <div class="skills-container">
-                <div class="skill-tag">C/C++</div>
-                <div class="skill-tag">Python</div>
-                <div class="skill-tag">Embedded C</div>
-                <div class="skill-tag">Arduino / Microcontrollers</div>
-                <div class="skill-tag">PC Assembly</div>
-                <div class="skill-tag">Hardware Diagnostics</div>
-                <div class="skill-tag">Circuit Debugging</div>
-                <div class="skill-tag">Linux / Windows</div>
+
+            <div class="container reveal">
+
+                <div class="section-label">04 / Technical Skills</div>
+
+                <h2 class="section-title">
+                    Tools & technologies.
+                </h2>
+
+                <p class="section-description">
+                    Technologies and tools I have worked with or explored
+                    through projects and learning.
+                </p>
+
+                <div class="skills-container">
+
+                    <div class="skill-tag">C / C++</div>
+                    <div class="skill-tag">Python</div>
+                    <div class="skill-tag">Embedded C</div>
+                    <div class="skill-tag">Arduino</div>
+                    <div class="skill-tag">React</div>
+                    <div class="skill-tag">JavaScript</div>
+                    <div class="skill-tag">Node.js</div>
+                    <div class="skill-tag">Express.js</div>
+                    <div class="skill-tag">MongoDB</div>
+                    <div class="skill-tag">HTML & CSS</div>
+                    <div class="skill-tag">Hardware Diagnostics</div>
+                    <div class="skill-tag">PC Assembly</div>
+                    <div class="skill-tag">Circuit Debugging</div>
+                    <div class="skill-tag">Linux</div>
+                    <div class="skill-tag">Windows</div>
+
+                </div>
+
             </div>
+
         </section>
 
-        <footer>
-            <p>&copy; 2026 Arun Sekhar. Built from scratch.</p>
-        </footer>
-    </div>
+
+        <!-- CONTACT SECTION -->
+
+        <section id="contact">
+
+            <div class="container reveal">
+
+                <div class="contact-box">
+
+                    <div class="section-label">
+                        05 / Contact
+                    </div>
+
+                    <h2>
+                        Let's connect and build something.
+                    </h2>
+
+                    <p>
+                        Interested in embedded systems, hardware
+                        engineering, software development or
+                        collaborating on interesting projects?
+                        Feel free to reach out.
+                    </p>
+
+                    <div class="contact-links">
+
+                        <a href="mailto:arun134469@gmail.com">
+                            Email Me ↗
+                        </a>
+
+                        <a href="https://linkedin.com/in/arun-sekhar-0548bb2a4"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            LinkedIn ↗
+                        </a>
+
+                        <!-- Replace with your actual GitHub profile -->
+
+                        <a href="https://github.com"
+                           target="_blank"
+                           rel="noopener noreferrer">
+                            GitHub ↗
+                        </a>
+
+                        <a href="Resume.pdf" target="_blank">
+                            Download Resume ↗
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="container">
+
+            <p>
+                © 2026 Arun Sekhar. Designed & built with curiosity.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SCROLL ANIMATION -->
+
+    <script>
+
+        const observer = new IntersectionObserver((entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        }, {
+            threshold: 0.12
+        });
+
+        document.querySelectorAll(".reveal").forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+    </script>
 
 </body>
 </html>
